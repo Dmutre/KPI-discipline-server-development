@@ -1,5 +1,6 @@
-import * as uuid from 'uuid';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class AbstractEntity {
-  id: string = uuid.v4();
+  @ApiProperty()
+  id: string;
 }
