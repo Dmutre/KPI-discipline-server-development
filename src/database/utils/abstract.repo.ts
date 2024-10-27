@@ -1,8 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { AbstractEntity } from './abstract.entity';
 import { v4 as uuidv4 } from 'uuid';
 
-@Injectable()
+@Injectable({ scope: Scope.TRANSIENT })
 export class AbstractRepository<TEntity extends AbstractEntity> {
   private readonly entities: TEntity[] = [];
 
