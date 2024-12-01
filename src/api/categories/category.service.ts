@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CategoryEntity } from 'src/database/entities/category.entity';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -20,6 +20,12 @@ export class CategoryService {
       where: userId
         ? [{ user: { id: userId } }, { user: null }]
         : { user: null },
+    });
+  }
+
+  public async getCategoryById(id: string): Promise<CategoryEntity> {
+    return await this.categoryRepo.findOneByOrFail({ id }).catch(() => {
+      throw new NotFoundException('No such categories');
     });
   }
 

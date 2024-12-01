@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -20,13 +21,21 @@ export class RecordEntity {
   @Column({ type: 'float', nullable: false })
   amount: number;
 
-  @ApiProperty({ type: UserEntity })
+  @ApiProperty()
+  @Column({ nullable: false })
+  userId?: string;
+
   @ManyToOne(() => UserEntity, (user) => user.records)
+  @JoinColumn({ name: 'userId' })
   user: UserEntity;
 
-  @ApiProperty({ type: CategoryEntity })
+  @ApiProperty()
+  @Column({ nullable: false })
+  categoryId?: string;
+
   @ManyToOne(() => CategoryEntity, (category) => category.records)
-  category: string;
+  @JoinColumn({ name: 'categoryId' })
+  category: CategoryEntity;
 
   @ApiProperty({ type: Date })
   @CreateDateColumn({ type: 'timestamptz' })

@@ -12,8 +12,6 @@ export class CreateRecordDTO {
   @IsNotEmpty()
   categoryId: string;
 
-  createdAt: Date = new Date();
-
   @ApiProperty()
   @IsNumber()
   amount: number;

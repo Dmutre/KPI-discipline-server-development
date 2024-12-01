@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -21,7 +22,12 @@ export class CategoryEntity {
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
+  @ApiProperty()
+  @Column({ nullable: true })
+  userId?: string;
+
   @ManyToOne(() => UserEntity, (user) => user.categories, { nullable: true })
+  @JoinColumn({ name: 'userId' })
   user?: UserEntity;
 
   @OneToMany(() => RecordEntity, (record) => record.category)
