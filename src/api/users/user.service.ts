@@ -1,25 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { User } from 'src/database/entities/user.entity';
-import { AbstractRepository } from 'src/database/utils/abstract.repo';
-import { NameDTO } from './dto/name.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { UserEntity } from 'src/database/entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateUserDTO } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepo: AbstractRepository<User>) {}
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepo: Repository<UserEntity>,
+  ) {}
 
-  createUser(data: NameDTO) {
-    return this.userRepo.create(data);
+  public async createUser(data: CreateUserDTO): Promise<UserEntity> {
+    return await this.userRepo.create(data);
   }
 
-  getUsers() {
-    return this.userRepo.findByCriteria();
+  public async getUsers(): Promise<UserEntity[]> {
+    return await this.userRepo.find();
   }
 
-  getUserById(id: string) {
-    return this.userRepo.findOrThrow(id);
+  public async getUserById(id: string): Promise<UserEntity> {
+    return await this.userRepo.findOneByOrFail({ id }).catch(() => {
+      throw new NotFoundException('Such user not found');
+    });
   }
 
-  deleteUser(id: string) {
-    return this.userRepo.deleteById(id);
+  public async deleteUser(id: string): Promise<void> {
+    await this.userRepo.delete({ id });
   }
 }

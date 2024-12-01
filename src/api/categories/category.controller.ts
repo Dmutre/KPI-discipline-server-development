@@ -21,14 +21,16 @@ export class CategoryController {
   @Post()
   @ApiOperation({ summary: 'Create category' })
   @ApiOkResponse({ type: CategoryEntity })
-  createCategory(@Body() data: CreateCategoryDTO): Promise<CategoryEntity> {
+  public createCategory(
+    @Body() data: CreateCategoryDTO,
+  ): Promise<CategoryEntity> {
     return this.categoryService.createCategory(data);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all categories' })
   @ApiOkResponse({ type: [CategoryEntity] })
-  getAllCategories(
+  public getAllCategories(
     @Query() { userId }: GetCategoryDTO,
   ): Promise<CategoryEntity[]> {
     return this.categoryService.getCategories(userId);
@@ -36,7 +38,9 @@ export class CategoryController {
 
   @Delete('/:categoryId')
   @ApiOperation({ summary: 'Delete category by id' })
-  deleteCategory(@Param('categoryId') categoryId: string): Promise<void> {
+  public deleteCategory(
+    @Param('categoryId') categoryId: string,
+  ): Promise<void> {
     return this.categoryService.deleteCategory(categoryId);
   }
 }
