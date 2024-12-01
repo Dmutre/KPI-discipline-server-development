@@ -1,16 +1,38 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AbstractEntity } from '../utils/abstract.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { UserEntity } from './user.entity';
+import { CategoryEntity } from './category.entity';
 
-export class Record extends AbstractEntity {
+@Entity()
+export class RecordEntity {
   @ApiProperty()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @ApiProperty()
+  @Column({ type: 'float', nullable: false })
   amount: number;
 
-  @ApiProperty()
-  userId: string;
+  @ApiProperty({ type: UserEntity })
+  @ManyToOne(() => UserEntity, (user) => user.records)
+  user: UserEntity;
 
-  @ApiProperty()
-  categoryId: string;
+  @ApiProperty({ type: CategoryEntity })
+  @ManyToOne(() => CategoryEntity, (category) => category.records)
+  category: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
+  @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
+
+  @ApiProperty({ type: Date })
+  @UpdateDateColumn({ type: 'timestamptz' })
+  updatedAt: Date;
 }

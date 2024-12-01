@@ -5,12 +5,14 @@ import config from './config/config';
 import { UserModule } from './api/users/user.module';
 import { CategoryModule } from './api/contegories/category.module';
 import { RecordModule } from './api/records/record.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [config],
     }),
+    DatabaseModule,
     UserModule,
     CategoryModule,
     RecordModule,
