@@ -19,11 +19,17 @@ export class CategoryService {
   }
 
   public async getCategories(userId?: string) {
-    return await this.categoryRepo.find({
-      where: userId
-        ? [{ user: { id: userId } }, { user: null }]
-        : { user: null },
-    });
+    const queryBuilder = this.categoryRepo.createQueryBuilder('category');
+
+    if (userId) {
+      queryBuilder
+        .where('category.userId = :userId', { userId })
+        .orWhere('category.userId IS NULL');
+    } else {
+      queryBuilder.where('category.userId IS NULL');
+    }
+
+    return await queryBuilder.getMany();
   }
 
   public async getCategoryById(id: string): Promise<CategoryEntity> {

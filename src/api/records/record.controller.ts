@@ -44,7 +44,9 @@ export class RecordController {
 
   @Delete('/:recordId')
   @ApiOperation({ summary: 'Delete Record by id' })
-  public deleteRecord(@Param('recordId', RecordyExistPipe) recordId: string): Promise<void> {
+  public deleteRecord(
+    @Param('recordId', RecordyExistPipe) recordId: string,
+  ): Promise<void> {
     return this.recordService.deleteRecord(recordId);
   }
 }
