@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Task option](#task-option)
 - [Running the NestJS Server](#running-the-nestjs-server)
 - [Docker Build Instructions](#docker-build-instructions)
 - [Docker Compose Instructions](#docker-compose-instructions)
@@ -11,12 +12,16 @@
 ## Introduction
 This document provides instructions for setting up and running the KPI Discipline Server using NestJS. It includes guidelines for running the server with the `pnpm` package manager, as well as instructions for using Docker.
 
+## Task option
+My number in group is 14. 14 % 3 = 2. So I have to make task with users`s categories, that only he can use. I made it
+
 ## Running the NestJS Server
 
 ### Prerequisites
 Make sure you have the following installed:
 - Node.js
 - pnpm
+- PostgreSQL creds
 
 ### Steps
 1. **Clone the Repository**:
