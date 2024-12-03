@@ -12,7 +12,7 @@ export class UserService {
   ) {}
 
   public async createUser(data: CreateUserDTO): Promise<UserEntity> {
-    return await this.userRepo.create(data);
+    return await this.userRepo.save(data);
   }
 
   public async getUsers(): Promise<UserEntity[]> {

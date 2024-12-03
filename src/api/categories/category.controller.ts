@@ -12,6 +12,7 @@ import { CategoryService } from './category.service';
 import { CategoryEntity } from 'src/database/entities/category.entity';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { GetCategoryDTO } from './dto/get-category.dto';
+import { CategoryExistPipe } from './pipe/category-exist.pipe';
 
 @ApiTags('Categories')
 @Controller('category')
@@ -39,7 +40,7 @@ export class CategoryController {
   @Delete('/:categoryId')
   @ApiOperation({ summary: 'Delete category by id' })
   public deleteCategory(
-    @Param('categoryId') categoryId: string,
+    @Param('categoryId', CategoryExistPipe) categoryId: string,
   ): Promise<void> {
     return this.categoryService.deleteCategory(categoryId);
   }

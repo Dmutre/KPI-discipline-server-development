@@ -3,6 +3,7 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { UserExistPipe } from './pipe/user-exist.pipe';
 
 @ApiTags('Users')
 @Controller('users')
@@ -32,7 +33,9 @@ export class UserController {
 
   @Delete('/:userId')
   @ApiOperation({ summary: 'Delete user by id' })
-  public deleteUser(@Param('userId') userId: string): Promise<void> {
+  public deleteUser(
+    @Param('userId', UserExistPipe) userId: string,
+  ): Promise<void> {
     return this.userService.deleteUser(userId);
   }
 }

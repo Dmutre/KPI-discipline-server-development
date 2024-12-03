@@ -1,16 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
 
 export class GetRecordsDTO {
   @ApiProperty()
   @IsOptional()
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
   userId?: string;
 
   @ApiProperty()
   @IsOptional()
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
   categoryId?: string;
 }

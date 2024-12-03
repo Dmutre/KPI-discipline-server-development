@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  Column,
   CreateDateColumn,
   Entity,
   OneToMany,
@@ -16,6 +17,7 @@ export class UserEntity {
   id: string;
 
   @ApiProperty()
+  @Column({ type: 'varchar', nullable: false })
   name: string;
 
   @OneToMany(() => CategoryEntity, (category) => category.user)

@@ -12,6 +12,7 @@ import { RecordService } from './record.service';
 import { RecordEntity } from 'src/database/entities/record.entity';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { GetRecordsDTO } from './dto/get-records.dto';
+import { RecordyExistPipe } from './pipe/record-exists.pipe';
 
 @ApiTags('Records')
 @Controller('records')
@@ -36,14 +37,14 @@ export class RecordController {
   @ApiOperation({ summary: 'Get record by id' })
   @ApiOkResponse({ type: RecordEntity })
   public getRecordById(
-    @Param('recordId') recordId: string,
+    @Param('recordId', RecordyExistPipe) recordId: string,
   ): Promise<RecordEntity> {
     return this.recordService.getRecordById(recordId);
   }
 
   @Delete('/:recordId')
   @ApiOperation({ summary: 'Delete Record by id' })
-  public deleteRecord(@Param('recordId') recordId: string): Promise<void> {
+  public deleteRecord(@Param('recordId', RecordyExistPipe) recordId: string): Promise<void> {
     return this.recordService.deleteRecord(recordId);
   }
 }

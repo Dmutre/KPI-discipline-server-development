@@ -26,7 +26,7 @@ export class RecordService {
       throw new BadRequestException(
         'This category can be userd only for one user',
       );
-    return this.recordRepo.create(data);
+    return this.recordRepo.save(data);
   }
 
   public async getRecords(query: GetRecordsDTO): Promise<RecordEntity[]> {

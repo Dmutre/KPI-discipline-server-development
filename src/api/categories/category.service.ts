@@ -3,16 +3,19 @@ import { CategoryEntity } from 'src/database/entities/category.entity';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserService } from '../users/user.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoryRepo: Repository<CategoryEntity>,
+    private readonly userService: UserService,
   ) {}
 
   public async createCategory(data: CreateCategoryDTO) {
-    return await this.categoryRepo.create(data);
+    if (data.userId) await this.userService.getUserById(data.userId);
+    return await this.categoryRepo.save(data);
   }
 
   public async getCategories(userId?: string) {

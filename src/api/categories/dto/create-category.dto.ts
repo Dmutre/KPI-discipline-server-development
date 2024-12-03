@@ -11,5 +11,5 @@ export class CreateCategoryDTO {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  userId: string;
+  userId?: string;
 }
