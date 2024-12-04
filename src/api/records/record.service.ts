@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { RecordEntity } from 'src/database/entities/record.entity';
+import { RecordEntity } from '../../database/entities/record.entity';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { GetRecordsDTO } from './dto/get-records.dto';
 import { InjectRepository } from '@nestjs/typeorm';

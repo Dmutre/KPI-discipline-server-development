@@ -54,7 +54,7 @@ Make sure you have the following installed:
 ## Docker Build Instructions
 
 ### Build the Docker Image
-To build the Docker image, run the following command in the project directory:
+To build the Docker image you have to have setteled .env file (example is .env.sample) and run the following command in the project directory:
 ```bash
 docker build -t kpi-discipline-server .
 ```

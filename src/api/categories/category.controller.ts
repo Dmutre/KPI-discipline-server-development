@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CategoryService } from './category.service';
-import { CategoryEntity } from 'src/database/entities/category.entity';
+import { CategoryEntity } from '../../database/entities/category.entity';
 import { CreateCategoryDTO } from './dto/create-category.dto';
 import { GetCategoryDTO } from './dto/get-category.dto';
 import { CategoryExistPipe } from './pipe/category-exist.pipe';

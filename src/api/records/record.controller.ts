@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RecordService } from './record.service';
-import { RecordEntity } from 'src/database/entities/record.entity';
+import { RecordEntity } from '../../database/entities/record.entity';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { GetRecordsDTO } from './dto/get-records.dto';
 import { RecordyExistPipe } from './pipe/record-exists.pipe';
