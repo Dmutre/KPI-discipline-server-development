@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
-import { UserEntity } from 'src/database/entities/user.entity';
+import { UserEntity } from '../../database/entities/user.entity';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UserExistPipe } from './pipe/user-exist.pipe';
 
