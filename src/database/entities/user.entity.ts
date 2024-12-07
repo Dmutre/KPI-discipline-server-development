@@ -20,6 +20,9 @@ export class UserEntity {
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
+  @Column({ type: 'varchar', nullable: false })
+  password: string;
+
   @OneToMany(() => CategoryEntity, (category) => category.user)
   categories: CategoryEntity[];
 

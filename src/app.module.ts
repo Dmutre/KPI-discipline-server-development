@@ -6,6 +6,7 @@ import { UserModule } from './api/users/user.module';
 import { CategoryModule } from './api/categories/category.module';
 import { RecordModule } from './api/records/record.module';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DatabaseModule } from './database/database.module';
     UserModule,
     CategoryModule,
     RecordModule,
+    AuthModule,
   ],
   controllers: [AppController],
 })

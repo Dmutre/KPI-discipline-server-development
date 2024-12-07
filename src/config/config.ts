@@ -8,4 +8,6 @@ export default () => ({
   dbUser: process.env.DB_USER,
   dbPassword: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  jwtSecret: process.env.JWT_SECRET,
+  accessTtl: process.env.ACCESS_TTL,
 });
