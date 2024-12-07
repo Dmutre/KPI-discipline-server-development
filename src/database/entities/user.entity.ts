@@ -17,7 +17,7 @@ export class UserEntity {
   id: string;
 
   @ApiProperty()
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'varchar', nullable: false, unique: true })
   name: string;
 
   @Column({ type: 'varchar', nullable: false })

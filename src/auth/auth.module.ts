@@ -3,6 +3,8 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from 'src/database/entities/user.entity';
 
 @Global()
 @Module({
@@ -18,6 +20,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       inject: [ConfigService],
     }),
+    TypeOrmModule.forFeature([UserEntity]),
   ],
   controllers: [AuthController],
   providers: [AuthService],
