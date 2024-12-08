@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     if (!token) {
       throw new UnauthorizedException('Provide token is invalid');
     }
-    await this.authService.verifyToken(token);
+    request.user = await this.authService.verifyToken(token);
     return true;
   }
 }

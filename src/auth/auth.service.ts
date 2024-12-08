@@ -63,8 +63,9 @@ export class AuthService {
   }
 
   public async verifyToken(token: string): Promise<any> {
-    return await this.jwtService.verifyAsync(token).catch(() => {
+    const { name } = await this.jwtService.verifyAsync(token).catch(() => {
       throw new UnauthorizedException('Invalid token');
     });
+    return await this.userRepo.findOneBy({ name });
   }
 }

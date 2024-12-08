@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { RegisterDTO } from './dto/register.dto';
@@ -20,5 +20,13 @@ export class AuthController {
   async login(@Body() { name, password }: RegisterDTO) {
     const token = await this.authService.login(name, password);
     return { token };
+  }
+
+  @Get('/me')
+  @ApiOperation({ summary: 'Get user from token' })
+  getMe(@Req() request) {
+    const user = request.user;
+    delete user.password;
+    return user;
   }
 }
