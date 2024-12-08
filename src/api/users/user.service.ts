@@ -16,13 +16,20 @@ export class UserService {
   }
 
   public async getUsers(): Promise<UserEntity[]> {
-    return await this.userRepo.find();
+    return await this.userRepo.find({
+      select: { id: true, name: true, createdAt: true, updatedAt: true },
+    });
   }
 
   public async getUserById(id: string): Promise<UserEntity> {
-    return await this.userRepo.findOneByOrFail({ id }).catch(() => {
-      throw new NotFoundException('Such user not found');
-    });
+    return await this.userRepo
+      .findOneOrFail({
+        where: { id },
+        select: { id: true, name: true, createdAt: true, updatedAt: true },
+      })
+      .catch(() => {
+        throw new NotFoundException('Such user not found');
+      });
   }
 
   public async deleteUser(id: string): Promise<void> {
